@@ -1,20 +1,20 @@
-<header class="row m-0 p-0 d-flex  ">
+<header class="row m-0 p-0 d-flex centerCenter ">
   <div class="col-4 d-flex align-items-center justify-content-start">
     <a href="" class="logo">oNda</a>
     <div class="logoIMG"></div>
   </div>
-  <ul class="nav  col-6">
-    <li>
+  <ul class="nav  col-6 d-flex justify-content-end">
+    <!-- <li>
       <a href=""><i class="bi bi-home"></i>Home</a>
-    </li>
+    </li> -->
     <li><a href="">About Us</a></li>
-    <li><a href="">Kids</a></li>
+    <!-- <li><a href="">Kids</a></li>
     <li><a href="">Trend</a></li>
-    <li><a href="">My list</a></li>
+    <li><a href="">My list</a></li> -->
   </ul>
 </header>
 <div class="banner">
-  <video (ended)="ended()" src="{{images[index].triller}}" id="video" >
+  <video class="" (ended)="ended()" src="{{images[index].triller}}" id="video" >
 
   </video>
   <div class="content active">
@@ -30,17 +30,17 @@
     </div>
   </div>
 
+  <div class="carousel-box centerCenter">
+    <video class="" (ended)="ended()" src="{{images[index].triller}}" id="video1" >
 
-
-
-
-
-  <div class="carousel-box">
+    </video>
     <div class="carousel">
 
       <app-slider (closeTriller)="closeTriller()" [images]="images"></app-slider>
-    </div>
 
+    </div>
+    <a class="play d-flex d-md-none align-content-center justify-content-center" (click)="watchTrailer1()">
+      <i class="bi bi-play" id="play1"></i>Watch Trailer</a>
   </div>
 
 
@@ -50,8 +50,10 @@
 
 
 
-  <a class="play d-flex align-content-center justify-content-center" (click)="watchTrailer()">
+  <a class="play d-md-flex d-none align-content-center justify-content-center" (click)="watchTrailer()">
     <i class="bi bi-play" id="play"></i>Watch Trailer</a>
+
+
     <div class="sci">
 
       <ul class="">

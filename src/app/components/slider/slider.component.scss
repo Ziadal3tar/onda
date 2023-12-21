@@ -3,6 +3,14 @@
   width: 75%;
   height: 100%;
   margin: auto;
+  @media (min-width: 450px) and (max-width: 560px) {
+    width: 50%;
+
+  }
+  @media (min-width: 0px) and (max-width: 450px) {
+    width: 40%;
+
+  }
 
   .slider-item {
     position: absolute;

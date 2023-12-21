@@ -3,10 +3,13 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 30px 100px;
+
+  @media (min-width: 0px) and (max-width: 1100px) {
+    padding: 30px 50px;
+
+  }
+
   z-index: 10;
 
   .nav {
@@ -45,72 +48,34 @@ header {
     background-size: contain !important;
     background-position: center;
     margin-top: 10px;
-    background-image: url(../../../assets/logo.png);
+    background-image: url(/assets/logo.png);
   }
 }
 
 .banner {
-  background-position: center left !important;
-  background-size: cover !important;
+  background-position: center !important;
   position: relative;
-
-  video {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    display: none;
-
-  }
-
-  .carousel-box {
-    position: relative !important;
-    min-width: 650px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    background: rgba(0, 0, 0, 0.2) !important;
-    box-shadow: 20px 20px 20px 50px rgba(0, 0, 0, 0.2) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
-    backdrop-filter: blur(20px) !important;
-    border-radius: 10px !important;
-
-    z-index: 1;
-
-    min-height: 70vh;
-
-    .carousel {
-
-      width: 600px;
-      height: 300px;
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-  position: absolute;
+  // position: absolute;
   width: 100%;
   min-height: 100vh;
-  padding: 0 100px;
+  padding: 0 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  background-size: cover;
-  background-position: center;
+  background-size: cover !important;
   overflow: hidden;
   transition: 0.5s;
+  background-repeat: no-repeat !important;
+
+  @media (min-width: 0px) and (max-width: 768px) {
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    flex-direction: column-reverse !important;
+
+
+  }
 
   &::before {
     position: absolute;
@@ -124,19 +89,149 @@ header {
     background-color: rgba(0, 0, 0, 0.5);
   }
 
+
+
+  .carousel-box {
+    position: relative !important;
+    min-width: 500px !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 20px 20px 20px 50px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    border-radius: 10px !important;
+    z-index: 1;
+    min-height: 70vh;
+
+
+
+
+    @media (min-width: 1000px) and (max-width: 1100px) {
+      min-width: 420px !important;
+
+    }
+
+    @media (min-width: 850px) and (max-width: 1000px) {
+      min-width: 350px !important;
+    }
+
+    @media (min-width: 768px) and (max-width: 850px) {
+      min-width: 300px !important;
+    }
+
+    @media (min-width: 400px) and (max-width: 768px) {
+      min-width: 450px !important;
+    }
+    @media (min-width: 320px) and (max-width: 400px) {
+      min-width: 400px !important;
+    }
+    @media (min-width: 250px) and (max-width: 320px) {
+      margin-top: 70px;
+      min-width: 350px !important;
+
+    }
+    @media (min-width: 0px) and (max-width: 768px) {
+      margin-top: 70px;
+
+    }
+    .carousel {
+      width: 100%;
+      height: 300px;
+
+      // @media (min-width: 400px) and (max-width: 768px) {
+      //   width: 550px;}
+      // @media (min-width: 250px) and (max-width: 400px) {
+      //   width: 430px;}
+    }
+  }
+
+  .play {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    display: inline-block;
+    justify-content: flex-start;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+    z-index: 3;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      color: var(--primary);
+    }
+
+    i {
+      margin-right: 10px;
+      font-size: 40px;
+      cursor: pointer !important;
+    }
+
+    @media (min-width: 700px) and (max-width: 768px) {
+
+    left: -130px !important;
+   }
+    @media (min-width: 630px) and (max-width: 700px) {
+
+    left: -100px !important;
+   }
+    @media (min-width: 590px) and (max-width: 630px) {
+
+    left: -60px !important;
+   }
+    @media (min-width: 520px) and (max-width: 590px) {
+
+    left: -40px !important;
+   }
+    @media (min-width: 470px) and (max-width: 520px) {
+
+    left: -20px !important;
+   }
+    @media (min-width: 400px) and (max-width: 470px) {
+
+    left: 0px !important;
+   }
+  }
+
   .content {
     position: relative;
+    height: auto;
+    min-height: 60vh;
+    display: flex !important;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
     max-width: 550px;
-    display: none;
     visibility: hidden;
     transform: scale(0);
     transition: 0.5s;
     z-index: 3;
 
+    @media (min-width: 0px) and (max-width: 768px) {
+      max-width: 100vw;
+
+    }
+
+    @media (min-width: 1000px) and (max-width: 1100px) {
+      max-width: 530px;
+    }
+
+    @media (min-width: 850px) and (max-width: 999px) {
+      max-width: 350px;
+    }
+
+    @media (min-width: 768px) and (max-width: 850px) {
+      max-width: 300px;
+    }
+
     .movie-title {
-      width: 431px;
-      height: 180px;
-      background-position: center left;
+      width: 50%;
+      height: 130px;
+      background-position: 0px center;
       background-size: contain;
       background-repeat: no-repeat;
     }
@@ -145,6 +240,27 @@ header {
       color: rgba(255, 255, 255, 0.5);
       font-weight: 400;
       font-size: 30px;
+      width: 100%;
+
+      @media (min-width: 800px) and (max-width: 999px) {
+        font-size: 24px;
+      }
+
+      @media (min-width: 768px) and (max-width: 800px) {
+        font-size: 18px;
+
+      }
+
+      @media (min-width: 375px) and (max-width: 475px) {
+        font-size: 12px;
+        white-space: nowrap;
+        width: 100%;
+      }
+      @media (min-width: 250px) and (max-width:375px) {
+        font-size: 8px;
+        white-space: nowrap;
+        width: 100%;
+      }
 
       span {
         padding: 0 10px;
@@ -180,7 +296,23 @@ header {
     .button {
       position: relative;
 
+      @media (min-width: 250px) and (max-width: 345px) {
+
+        display: flex;
+        width: 100%;
+
+      }
+
       a {
+        @media (min-width: 250px) and (max-width: 345px) {
+
+
+          font-size: 14px;
+          white-space: nowrap;
+          padding: 6px 15px;
+
+        }
+
         position: relative;
         display: inline-block;
         margin-right: 10px;
@@ -229,7 +361,6 @@ header {
     letter-spacing: 1px;
     font-size: 1.2em;
     z-index: 3;
-
     cursor: pointer;
     transition: 0.3s;
 
@@ -241,11 +372,15 @@ header {
       margin-right: 10px;
       font-size: 40px;
       cursor: pointer !important;
-
     }
   }
 
   .sci {
+    @media (min-width: 0px) and (max-width: 768px) {
+      position: fixed;
+      bottom: 10px;
+    }
+
     position: absolute;
     bottom: 50px;
     right: 30px;
@@ -255,7 +390,6 @@ header {
     align-items: end;
     gap: 5px;
     z-index: 3;
-
 
     a {
       color: #ffffff;
@@ -270,5 +404,15 @@ header {
         color: var(--primary);
       }
     }
+  }
+
+  video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: none;
   }
 }

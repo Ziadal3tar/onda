@@ -43,16 +43,36 @@ if (video.paused) {
   btn.classList.remove('bi-pause');
 }
   }
+  watchTrailer1(){
+    let video: HTMLElement | any = document.getElementById('video1');
+    let btn1: HTMLElement | any = document.getElementById('play1')
+if (video.paused) {
+  video.play();
+  video.style.display = 'unset';
+  btn1.classList.remove('bi-play');
+  btn1.classList.add('bi-pause');
+} else if (!video.paused) {
+  video.pause();
+  video.style.display = 'none';
+  btn1.classList.add('bi-play');
+  btn1.classList.remove('bi-pause');
+}
+  }
   ended() {
     let video: HTMLElement | any = document.getElementById('video');
     video.play();
   }
   closeTriller(){
     let video: HTMLElement | any = document.getElementById('video');
+    let video1: HTMLElement | any = document.getElementById('video1');
     let btn: HTMLElement | any = document.getElementById('play')
+    let btn1: HTMLElement | any = document.getElementById('play1')
     video.pause();
     video.style.display = 'none';
+    video1.style.display = 'none';
     btn.classList.add('bi-play');
     btn.classList.remove('bi-pause');
+    btn1.classList.add('bi-play');
+    btn1.classList.remove('bi-pause');
   }
 }
