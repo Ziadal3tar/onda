@@ -1,0 +1,135 @@
+<div class="body position-relative">
+  <div id="done" class="done position-absolute w-100 centerCenter">
+    <p>Booked Successful</p>
+  </div>
+  <div class="book">
+    <div class="left position-relative">
+      <img src="{{movieData.poster}}" alt="">
+      <div class="play" (click)="playVid()">
+        <i class="bi bi-play-fill" id="play"></i>
+      </div>
+      <div class="cont">
+        <h6>Directed by</h6>
+        <p>{{movieData.DirectedBy}}</p>
+        <h6>Writers</h6>
+        <p>{{movieData.Writers}}</p>
+        <h6>Stars</h6>
+        <p>{{movieData.Stars}}</p>
+      </div>
+
+    </div>
+    <div class="right" >
+
+      <video (ended)="ended()" src="{{movieData.triller}}" id="video" >
+
+      </video>
+
+      <div class="head-time">
+        <h1>{{movieData.name}}</h1>
+        <div class="time">
+          <h6>
+            <i class="bi bi-clock"></i>{{movieData.duration}}
+          </h6>
+          <button>{{movieData.Classification}}</button>
+        </div>
+      </div>
+      <div class="date-type">
+        <div class="left-card">
+          <h6 class="title" id="selectedDay">{{selectedDay}}</h6>
+          <div class="card-month crd">
+            <li *ngFor="let item of dateArray let i = index">
+              <h6>{{item.day}}</h6>
+              <h6 class="date-point" [ngClass]="{'h6-active': i == dateActive}" (click)="handelDays(i)">{{item.date}}</h6>
+            </li>
+
+
+
+
+
+          </div>
+        </div>
+        <div class="right-card">
+          <h6 class="title">Show time</h6>
+          <div class="card-month crd">
+            <li *ngFor="let item of times let i = index" >
+              <h6>{{item.type}}</h6>
+              <h6 (click)="getTime(item ,i)" [ngClass]="{'h6-active': i == timeActive}">{{item.time}}</h6>
+            </li>
+
+          </div>
+        </div>
+      </div>
+      <div class="screen">
+        Screen
+      </div>
+      <!-- chairs -->
+      <div class="chair" id="chair">
+        <div class="rows my-4" *ngFor="let item of chairs let i = index">
+          <p class="m-0">{{item.name}}</p>
+           <li class="seat" *ngFor="let chair of item.chairs let x = index"  [ngClass]="{'booked': item.booked.includes(x)}" (click)="select(i,x,$event)">{{item.name}}{{chair}}</li>
+           <p class="m-0">{{item.name}}</p>
+        </div>
+
+
+      </div>
+      <!-- ticket -->
+      <div class="ticket" id="ticket">
+        <div class="tic" *ngFor="let tic of booking.chairsBooked let i = index">
+          <div class="barcode" id="barcode_{{i}}" #barcodeContainer>
+            <div class="cards">
+              <h6>ROW {{tic.row}}</h6>
+              <h6>{{selectedDay}}</h6>
+            </div>
+            <div class="cards">
+              <h6>seat {{tic.seat}}</h6>
+              <h6>{{booking.type.time}}</h6>
+            </div>
+            <!-- <canvas></canvas> -->
+            <h5 class="mt-4">ONDA CINEMA</h5>
+          </div>
+          <div class="tic-details" style="background: url({{movieData.bg}}) no-repeat center -35px /cover;">
+            <div class="type">{{booking.type.type}}</div>
+            <h5 class="pvr"><span>Onda</span> Cinema</h5>
+            <h1>{{movieData.name}}</h1>
+            <div class="seat-det">
+              <div class="seat-cr">
+                <h6>ROW</h6>
+                <h6>{{tic.row}}</h6>
+              </div>
+              <div class="seat-cr">
+                <h6>SEAT</h6>
+                <h6>{{tic.seat}}</h6>
+              </div>
+              <div class="seat-cr">
+                <h6>DATE</h6>
+                <h6>{{booking.date.date}} <sub>{{booking.date.day}}</sub></h6>
+              </div>
+              <div class="seat-cr">
+                <h6>TIME</h6>
+                <h6>{{booking.type.time}} <sub>pm</sub></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- details -->
+      <div class="details" id="set">
+        <div class="details-chair">
+          <li>Available</li>
+          <li>Booked</li>
+          <li>Selected</li>
+        </div>
+      </div>
+      <button class="book-tic" id="book-ticket" (click)="next()">
+        <i class="bi bi-arrow-right-short"></i>
+      </button>
+      <button class="book-tic" id="doneBtn" (click)="done()">
+        DONE
+      </button>
+      <button class="book-tic " id="back-ticket" (click)="back()">
+        <i class="bi bi-arrow-left-short"></i>
+      </button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<header class="row m-0 p-0 d-flex  ">
+  <div class="col-4 d-flex align-items-center justify-content-start">
+    <a href="" class="logo">oNda</a>
+    <div class="logoIMG"></div>
+  </div>
+  <ul class="nav  col-6">
+    <li>
+      <a href=""><i class="bi bi-home"></i>Home</a>
+    </li>
+    <li><a href="">About Us</a></li>
+    <li><a href="">Kids</a></li>
+    <li><a href="">Trend</a></li>
+    <li><a href="">My list</a></li>
+  </ul>
+</header>
+<div class="banner">
+  <video (ended)="ended()" src="{{images[index].triller}}" id="video" >
+
+  </video>
+  <div class="content active">
+    <div class="movie-title" style="background-image: url({{images[index].logo}});"></div>
+    <!-- <img src="{{images[index].logo}}" alt="" class="movie-title"> -->
+    <h4>
+      <span>{{images[index].date}}</span><span><i>{{images[index].Classification}}</i></span><span>{{images[index].duration}}</span><span>{{images[index].Genres}}</span>
+    </h4>
+    <p>{{images[index].disc}}</p>
+    <div class="button">
+      <a href="/Tickets/:{{index}}">Tickets</a>
+      <a href=""><i class="bi bi-plus"></i>My List</a>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="carousel-box">
+    <div class="carousel">
+
+      <app-slider (closeTriller)="closeTriller()" [images]="images"></app-slider>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  <a class="play d-flex align-content-center justify-content-center" (click)="watchTrailer()">
+    <i class="bi bi-play" id="play"></i>Watch Trailer</a>
+    <div class="sci">
+
+      <ul class="">
+
+        <li><a target="_blank" href="https://www.al3tar.me/ZPORTOFOLIO/#/home"><i class="bi bi-browser-chrome"></i></a></li>
+        <li><a target="_blank" href="https://www.facebook.com/profile.php?id=100009837481669"><i class="bi bi-facebook"></i></a></li>
+        <li><a target="_blank" href="https://wa.me/01270363116"><i class="bi bi-whatsapp"></i></a></li>
+        <li><a target="_blank" href="https://www.linkedin.com/in/ziad-alattar-b6a481224/"><i class="bi bi-linkedin"></i></a></li>
+      </ul>
+      <p>CODED BY ZIAD ALMORSY</p>
+    </div>
+</div>

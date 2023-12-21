@@ -1,0 +1,15 @@
+<div class="slider-container">
+
+  <div class="slider-item" *ngFor="let image of images let i = index"
+  [ngClass]="{
+    'selected': i === selectedIndex,
+    'prev': i === selectedIndex-1,
+    'next': i === selectedIndex+1,
+    'hideLeft': i === selectedIndex -2,
+    'hideRight': i === selectedIndex+2,
+'d-none':selectedIndex===0 && i !=selectedIndex && i >=selectedIndex +2 ||selectedIndex===4 && i !=selectedIndex && i <=selectedIndex -2
+    }">
+    <img [src]="image.poster" [alt]="image.imageAlt" class="slider-img" (panleft)="showPrev(i)" (panRight)="showNext(i)">
+  </div>
+
+</div>

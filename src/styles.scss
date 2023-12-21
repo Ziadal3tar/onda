@@ -1,0 +1,35 @@
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&display=swap');
+// @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+  --primary: #ff3700
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  scroll-behavior: smooth;
+  background-color: #1f2025;
+  color: white;
+  margin: 0;
+  font-family: 'Montserrat Alternates', sans-serif !important;
+}
+
+
+.centerCenter{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.centerBetween{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
