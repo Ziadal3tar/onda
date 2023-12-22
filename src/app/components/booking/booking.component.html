@@ -1,4 +1,13 @@
-<div class="body centerCenter w-100 h-auto">
+<header id="header" class="row m-0 p-0 d-flex centerCenter position-static px-md-5" style="background-color: #000d19; height: 60px;">
+  <div class="col-9 h-100 d-flex align-items-center justify-content-start">
+    <a href="/home" class="logo">o<span class="text-decoration-line-through text-skyblue">N</span>da</a>
+    <div class="logoIMG"></div>
+  </div>
+  <ul class="nav h-100 col-3 d-flex justify-content-end align-items-center">
+    <li><a href="">iNfo</a></li>
+  </ul>
+</header>
+<div class="body centerCenter w-100 h-auto ">
   <div id="done" class="done position-absolute w-100 centerCenter">
     <p>Booked Successful</p>
   </div>
@@ -27,7 +36,7 @@
       <div class="head-time">
         <h1>{{movieData.name}}</h1>
         <div class="time">
-          <h6>
+          <h6 class="centerCenter my-0 py-0">
             <i class="bi bi-clock"></i>{{movieData.duration}}
           </h6>
           <button>{{movieData.Classification}}</button>
@@ -67,7 +76,7 @@
         <div class="rows my-4" *ngFor="let item of chairs let i = index">
           <p class="m-0">{{item.name}}</p>
            <li class="seat" *ngFor="let chair of item.chairs let x = index"  [ngClass]="{'booked': item.booked.includes(x)}" (click)="select(i,x,$event)">{{item.name}}{{chair}}</li>
-           <p class="m-0">{{item.name}}</p>
+           <p class="m-0" id="nameRow">{{item.name}}</p>
         </div>
 
 
@@ -84,10 +93,9 @@
               <h6>seat {{tic.seat}}</h6>
               <h6>{{booking.type.time}}</h6>
             </div>
-            <!-- <canvas></canvas> -->
             <h5 class="mt-4">ONDA CINEMA</h5>
           </div>
-          <div class="tic-details" style="background: url({{movieData.bg}}) no-repeat center -35px /cover;">
+          <div class="tic-details" style="background: url({{movieData.bg}}) no-repeat center 0px /cover;">
             <div class="type">{{booking.type.type}}</div>
             <h5 class="pvr"><span>Onda</span> Cinema</h5>
             <h1>{{movieData.name}}</h1>

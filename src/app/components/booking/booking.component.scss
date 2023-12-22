@@ -12,7 +12,7 @@
     z-index: 1;
     bottom: 0;
     opacity: 0;
-
+display: none;
     p {
       margin: 0;
       background-color: greenyellow;
@@ -28,10 +28,16 @@
     width: 92%;
     height: 90%;
 
-    .right {
-      height: auto !important;
+    @media (min-width: 0px) and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
+    @media (min-width: 0px) and (max-width: 600px) {
+      width: 100%;
 
     }
+
+
 
     .left,
     .right {
@@ -47,6 +53,16 @@
         height: 100%;
         z-index: -8;
         display: none;
+
+        @media (min-width: 768px) and (max-width: 950px) {
+          padding: 0px 26px;
+
+        }
+
+        @media (min-width: 0px) and (max-width: 768px) {
+          height: 73%;
+          top: 113px;
+        }
 
       }
 
@@ -67,8 +83,20 @@
           display: flex;
           overflow: hidden;
           margin: 10px 0;
+          @media (min-width: 0px) and (max-width: 620px) {
+            height: 140px;
+
+          }
+
 
           .barcode {
+            width: 40% !important;
+            padding: 0 20px;
+            background-color: #fff;
+            @media (min-width: 0px) and (max-width: 450px) {
+              padding: 0;
+
+            }
             canvas {
               width: 100% !important;
             }
@@ -79,11 +107,12 @@
               font-size: 14px;
               color: #000 !important;
               margin: 0;
+              @media (min-width: 0px) and (max-width: 450px) {
+                font-size: 10px;
+
+              }
             }
 
-            width: 330px !important;
-            padding: 0 20px;
-            background-color: #fff;
 
             .cards {
               width: 100%;
@@ -93,15 +122,38 @@
               padding: 0 10px;
               color: #000;
 
+              @media (min-width: 0px) and (max-width: 1077px) {
+                padding: 0;
+
+              }
+
               &:nth-child(1) {
                 margin-top: 16px;
               }
+
               h6 {
                 font-size: 13px !important;
                 width: 60%;
                 text-align: left;
                 font-weight: 600;
 
+                @media (min-width: 1077px) and (max-width: 1245px) {
+                  font-size: 11px !important;
+
+                }
+
+                @media (min-width: 982px) and (max-width: 1077px) {
+                  font-size: 11px !important;
+
+                }
+
+                @media (min-width: 768px) and (max-width: 982px) {
+                  font-size: 9px !important;
+
+                }
+                @media (min-width: 0px) and (max-width: 642px) {
+                  font-size: 8px !important;
+                                    }
                 &:nth-child(1) {
                   width: 40%;
                 }
@@ -132,7 +184,10 @@
               color: skyblue;
               font-size: 18px;
               margin: 0;
+              @media (min-width: 0px) and (max-width: 450px) {
+                font-size: 12px;
 
+              }
               span {
                 color: #fff;
               }
@@ -144,19 +199,32 @@
               bottom: 80px;
               font-weight: 600;
               font-size: 35px;
+              @media (min-width: 0px) and (max-width: 450px) {
+                font-size: 10px;
+
+              }
             }
 
             .seat-det {
               position: absolute;
               left: 0;
               bottom: 8px;
-              width: 50%;
+              width: 75%;
               height: 60px;
               background: linear-gradient(270deg, transparent, rgba(0, 0, 0, 0.3));
               display: flex;
               align-items: center;
               justify-content: center;
               padding-left: 25px;
+
+              @media (min-width: 642px) and (max-width: 825px) {
+                width: 80%;
+
+              }
+              @media (min-width: 0px) and (max-width: 642px) {
+                width: 85%;
+
+              }
 
               .seat-cr {
                 width: 100%;
@@ -168,7 +236,13 @@
 
                 h6 {
                   font-weight: 800;
+                  @media (min-width: 450px) and (max-width: 642px) {
+font-size: 12px;
+                  }
+                  @media (min-width: 0px) and (max-width: 450px) {
+                    font-size: 10px;
 
+                  }
                   sub {
                     font-weight: 400 !important;
                   }
@@ -301,6 +375,13 @@
       width: 20% !important;
       background-color: #2a2a2a;
 
+      @media (min-width: 0px) and (max-width: 768px) {
+        width: 48% !important;
+        margin: 0 auto 20px;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
       img {
         width: 100%;
       }
@@ -346,8 +427,32 @@
 
     .right {
       width: 80% !important;
-      padding: 10px 40px;
+      padding: 0px 30px;
       background: unset;
+      height: auto !important;
+
+      @media (min-width: 768px) and (max-width: 950px) {
+        padding: 0px 26px;
+      }
+
+      @media (min-width: 580px) and (max-width: 768px) {
+        width: 100% !important;
+        padding: 0px 26px;
+
+      }
+      @media (min-width: 0px) and (max-width: 768px) {
+        padding-bottom: 50px !important;
+      }
+
+      @media (min-width: 0px) and (max-width: 580px) {
+        width: 100% !important;
+        padding: 0px 22px; }
+
+        @media (min-width: 0px) and (max-width: 600px) {
+          margin: 0;
+          padding: 0;
+
+        }
       &::before {
         position: absolute;
         content: '';
@@ -357,6 +462,9 @@
         background-image: var(--movieBG);
         z-index: -10;
         border-radius: 22px;
+        @media (min-width: 0px) and (max-width: 600px) {
+          width: 100%;
+        }
       }
 
       &::after {
@@ -368,7 +476,9 @@
         z-index: -10;
         border-radius: 20px;
         top: 0px;
-
+        @media (min-width: 0px) and (max-width: 600px) {
+          width: 100%;
+        }
       }
 
       .head-time {
@@ -377,7 +487,7 @@
         display: flex;
         align-items: start;
         justify-content: space-between;
-        padding: 0 10px;
+        padding: 10px;
 
 
         &::before {
@@ -389,6 +499,9 @@
           right: -25px;
           background: linear-gradient(90deg, transparent, #1f2025);
           z-index: -9;
+          @media (min-width: 0px) and (max-width: 600px) {
+            right: 0px;
+          }
         }
 
         &::after {
@@ -408,15 +521,26 @@
           font-weight: 600;
           margin: 0;
           font-size: 35px;
+          width: 50%;
+          @media (min-width: 450px) and (max-width: 600px) {
+            font-size: 22px;
+          }
+          @media (min-width: 0px) and (max-width: 450px) {
+            font-size: 12px;
+          }
         }
 
         .time {
+          width: 50%;
           color: #fff;
           display: flex;
           align-items: center;
+justify-content: end;
           h6 {
             font-size: 13px;
             margin-right: 15px;
+display: flex;
+
             i {
               margin-right: 5px;
             }
@@ -431,12 +555,14 @@
             cursor: pointer;
             font-weight: 600;
             transition: 0.3s linear;
+
             &:hover {
               background: #fd6556;
             }
           }
         }
       }
+
       .date-type {
         position: relative;
         display: flex;
@@ -458,30 +584,37 @@
         .right-card {
           width: 45%;
         }
+
         .left-card,
         .right-card {
           .title {
             color: #fff;
             padding: 0 10px;
-
+            @media (min-width: 0px) and (max-width: 400px) {
+              font-size: 12px;
+            }
           }
+
           .crd {
             width: 100%;
             overflow-x: auto;
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            // justify-content: space-around;
             margin-top: 5px;
             border-top: 1px solid rgba(184, 184, 184, 0.2);
             padding: 5px 0;
+
             &::-webkit-scrollbar {
               height: 3px;
               background: rgba(184, 184, 184, 0.2);
             }
+
             &::-webkit-scrollbar-thumb {
               height: 3px;
               background: rgba(184, 184, 184, 0.5);
             }
+
             li {
               list-style: none;
               color: #fff;
@@ -493,6 +626,7 @@
               margin: 0 5px;
               font-weight: 600;
               cursor: pointer;
+
               h6 {
                 font-weight: 600;
                 font-size: 13px;
@@ -500,6 +634,7 @@
                 align-items: center;
                 justify-content: center;
                 margin: 1px;
+
                 &:nth-child(2) {
                   background: transparent;
                   border-radius: 50%;
@@ -511,6 +646,7 @@
                   align-items: center;
                   justify-content: center;
                   margin-top: 5px;
+
                   &:hover {
                     background-color: #fd6565;
                   }
@@ -519,6 +655,7 @@
             }
           }
         }
+
         .right-card {
           li {
             h6 {
@@ -532,6 +669,7 @@
           }
         }
       }
+
       .screen {
         width: 100%;
         height: 100px;
@@ -546,6 +684,7 @@
         color: #fff;
         letter-spacing: 5px;
         font-size: 12px;
+
         &::before {
           content: '';
           position: absolute;
@@ -562,6 +701,23 @@
     .chair {
       width: 95%;
       margin: auto;
+      @media (min-width: 0px) and (max-width: 600px) {
+        width: 100%!important;
+      }
+      // @media (min-width: 525px) and (max-width: 560px) {
+      //   // width: 110%!important;
+      //   // margin-left: -5%;
+      //           width: 100%!important;
+
+      // }
+      // @media (min-width: 0px) and (max-width: 525px) {
+      //   // width: 116%!important;
+      //   // margin-left: -8%;
+      //           width: 100%!important;
+
+      // }
+
+
       .booked {
         background: #fd6565 !important;
       }
@@ -577,6 +733,12 @@
         align-items: center;
         justify-content: space-between;
         margin-top: 15px;
+        @media (min-width: 0px) and (max-width: 500px) {
+  p{
+    display: none;
+  }
+
+}
 
         li {
           position: relative;
@@ -594,10 +756,34 @@
           color: #fff;
           font-weight: 600;
 
-          &:hover {
-            background: greenyellow;
-            color: #000;
+          @media (min-width: 768px) and (max-width: 900px) {
+            width: 24px;
+            height: 14px;
+            font-size: 8px;
+
           }
+          @media (min-width: 691px) and (max-width: 768px) {
+            width: 30px;
+            height: 17px;
+            font-size: 10px;
+
+
+          }
+          @media (min-width: 50px) and (max-width: 691px) {
+            width: 24px;
+            height: 14px;
+            font-size: 8px;
+
+
+          }
+          @media (min-width: 50px) and (max-width: 600px) {
+            li{
+            &:hover {
+              background: greenyellow;
+              color: #000;
+            }}
+          }
+
 
           &::before {
             width: 100%;
@@ -609,20 +795,43 @@
             border-radius: 10px;
           }
 
-          &:nth-child(2) {
-            margin-left: 30px;
+
+
+          @media (min-width: 1050px) {
+            &:nth-child(2) {
+              margin-left: 30px;
+            }
+
+            &:nth-child(6) {
+              margin-right: 50px;
+            }
+
+            &:nth-child(11) {
+              margin-right: 50px;
+            }
+
+            &:nth-child(16) {
+              margin-right: 30px;
+            }
           }
 
-          &:nth-child(6) {
-            margin-right: 50px;
-          }
+          @media (min-width: 500px) and (max-width: 1050px) {
 
-          &:nth-child(11) {
-            margin-right: 50px;
-          }
+            &:nth-child(2) {
+              margin-left: 10px;
+            }
 
-          &:nth-child(16) {
-            margin-right: 30px;
+            &:nth-child(6) {
+              margin-right: 20px;
+            }
+
+            &:nth-child(11) {
+              margin-right: 20px;
+            }
+
+            &:nth-child(16) {
+              margin-right: 10px;
+            }
           }
         }
       }

@@ -94,16 +94,19 @@ export class BookingComponent {
   }
 
   generateBarcodes() {
-
     for (let i = 0; i < this.booking.chairsBooked.length; i++) {
-let code =  this.movieData.name+this.booking.date.date+this.booking.type.time+this.booking.chairsBooked[i].row+this.booking.chairsBooked[i].seat
-     const canvas = document.createElement('canvas');
-     canvas.style.width=100 + '%';
+      let code =
+        this.movieData.name +
+        this.booking.date.date +
+        this.booking.type.time +
+        this.booking.chairsBooked[i].row +
+        this.booking.chairsBooked[i].seat;
+      const canvas = document.createElement('canvas');
+      canvas.style.width = 100 + '%';
       JsBarcode(canvas, code, { format: 'CODE128' });
-      let div:any = document.getElementById(`barcode_${i}`)
+      let div: any = document.getElementById(`barcode_${i}`);
       div.appendChild(canvas);
     }
-
   }
 
   ngOnInit(): void {
@@ -243,10 +246,9 @@ let code =  this.movieData.name+this.booking.date.date+this.booking.type.time+th
     return next7Days;
   }
   next() {
-    this.generateBarcodes()
+    this.generateBarcodes();
 
     this.booking.date = this.dateArray[this.dateActive];
-
 
     if (
       this.booking.chairsBooked != '' &&
@@ -280,14 +282,14 @@ let code =  this.movieData.name+this.booking.date.date+this.booking.type.time+th
   }
   done() {
     let done: HTMLElement | any = document.getElementById('done');
-    done.style.opacity  = '1';
-setTimeout(() => {
-  done.style.opacity  = '0';
+    done.style.opacity = '1';
+    done.style.display = 'none';
 
-}, 1250);
-setTimeout(() => {
-this.Router.navigate(['home']);
-
-}, 1300);
+    setTimeout(() => {
+      done.style.opacity = '0';
+    }, 1250);
+    setTimeout(() => {
+      this.Router.navigate(['home']);
+    }, 1300);
   }
 }
