@@ -5,10 +5,9 @@ padding-right: 70px;
     }
   width: 100%;
 }
-.bg {
+.bg#bg {
   background-size: cover;
   background-position: center;
-  background-image: url(/assets/client-dark-vip-cinema-studio.jpg);
   z-index: -1;
 
   &::after {
