@@ -58,11 +58,11 @@
     }
 
     @media (min-width: 850px) and (max-width: 1000px) {
-      min-width: 350px !important;
+      min-width: 450px !important;
     }
 
     @media (min-width: 768px) and (max-width: 850px) {
-      min-width: 300px !important;
+      min-width: 400px !important;
     }
 
     @media (min-width: 400px) and (max-width: 768px) {
@@ -74,6 +74,10 @@
     @media (min-width: 250px) and (max-width: 320px) {
       margin-top: 70px;
       min-width: 350px !important;
+
+    }
+    @media (min-width: 250px) and (max-width: 768px) {
+    min-height: 40vh;
 
     }
     @media (min-width: 0px) and (max-width: 768px) {
@@ -118,8 +122,10 @@
       cursor: pointer !important;
     }
 
+    @media (min-width: 250px) and (max-width: 768px) {
+    bottom: 0px !important;
+   }
     @media (min-width: 700px) and (max-width: 768px) {
-
     left: -130px !important;
    }
     @media (min-width: 630px) and (max-width: 700px) {
@@ -139,7 +145,6 @@
     left: -20px !important;
    }
     @media (min-width: 400px) and (max-width: 470px) {
-
     left: 0px !important;
    }
   }
@@ -190,7 +195,7 @@
       width: 100%;
 
       @media (min-width: 800px) and (max-width: 999px) {
-        font-size: 24px;
+        font-size: 22px;
       }
 
       @media (min-width: 768px) and (max-width: 800px) {
@@ -199,20 +204,22 @@
       }
 
       @media (min-width: 375px) and (max-width: 475px) {
-        font-size: 12px;
-        white-space: nowrap;
+        font-size: 18px;
+        // white-space: nowrap;
         width: 100%;
       }
       @media (min-width: 250px) and (max-width:375px) {
-        font-size: 8px;
-        white-space: nowrap;
+        font-size: 14px;
+        // white-space: nowrap;
         width: 100%;
       }
 
       span {
-        padding: 0 10px;
+        margin-right: 10px !important;
+        padding-right: 10px !important;
         border-right: 1px solid rgba(255, 255, 255, 0.5);
-
+        white-space: nowrap;
+        margin-top: 10px;
         &:first-child {
           padding-left: 0;
         }
