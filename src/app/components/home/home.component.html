@@ -4,7 +4,7 @@
     <div class="logoIMG"></div>
   </div>
   <ul class="nav h-100 col-3 d-flex justify-content-end align-items-center">
-    <li><a routerLink="aboutUs">iNfo</a></li>
+    <li class="m-0"><a style="white-space: nowrap;" routerLink="/AboutUs">About us</a></li>
   </ul>
 </header>
 <div class="banner">
@@ -13,7 +13,6 @@
   </video>
   <div class="content active">
     <div class="movie-title" style="background-image: url({{images[index].logo}});"></div>
-    <!-- <img src="{{images[index].logo}}" alt="" class="movie-title"> -->
     <h4>
       <span>{{images[index].date}}</span><span><i>{{images[index].Classification}}</i></span><span>{{images[index].duration}}</span><span>{{images[index].Genres}}</span>
     </h4>
