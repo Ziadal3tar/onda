@@ -1,4 +1,5 @@
-<header id="header" class="row m-0 p-0 d-flex centerCenter position-static px-md-5" style="background-color: #000d19; height: 60px;">
+<header id="header" class="row m-0 p-0 d-flex centerCenter position-static px-md-5"
+  style="background-color: #000d19; height: 60px;">
   <div class="col-9 h-100 d-flex align-items-center justify-content-start">
     <a routerLink="/home" class="logo">o<span class="text-decoration-line-through text-skyblue">N</span>da</a>
     <div class="logoIMG"></div>
@@ -27,9 +28,9 @@
       </div>
 
     </div>
-    <div class="right" >
+    <div class="right">
 
-      <video (ended)="ended()" src="{{movieData.triller}}" id="video" >
+      <video (ended)="ended()" src="{{movieData.triller}}" id="video">
 
       </video>
 
@@ -48,7 +49,8 @@
           <div class="card-month crd">
             <li *ngFor="let item of dateArray let i = index">
               <h6>{{item.day}}</h6>
-              <h6 class="date-point" [ngClass]="{'h6-active': i == dateActive}" (click)="handelDays(i)">{{item.date}}</h6>
+              <h6 class="date-point" [ngClass]="{'h6-active': i == dateActive}" (click)="handelDays(i)">{{item.date}}
+              </h6>
             </li>
 
 
@@ -60,7 +62,7 @@
         <div class="right-card">
           <h6 class="title">Show time</h6>
           <div class="card-month crd">
-            <li *ngFor="let item of times let i = index" >
+            <li *ngFor="let item of times let i = index">
               <h6>{{item.type}}</h6>
               <h6 (click)="getTime(item ,i)" [ngClass]="{'h6-active': i == timeActive}">{{item.time}}</h6>
             </li>
@@ -75,15 +77,16 @@
       <div class="chair" id="chair">
         <div class="rows my-4" *ngFor="let item of chairs let i = index">
           <p class="m-0">{{item.name}}</p>
-           <li class="seat" *ngFor="let chair of item.chairs let x = index"  [ngClass]="{'booked': item.booked.includes(x)}" (click)="select(i,x,$event)">{{item.name}}{{chair}}</li>
-           <p class="m-0" id="nameRow">{{item.name}}</p>
+          <li class="seat" *ngFor="let chair of item.chairs let x = index" [ngClass]="{'selected': selectedChairId.includes(item.name + '-' + (x+1))}"
+            [ngClass]="{'booked': item.booked.includes(x)}" (click)="select(i,x,$event)">{{item.name}}{{chair}}</li>
+          <p class="m-0" id="nameRow">{{item.name}}</p>
         </div>
 
 
       </div>
       <!-- ticket -->
       <div class="ticket" id="ticket">
-        <div class="tic" *ngFor="let tic of booking.chairsBooked let i = index">
+        <div class="tic" id="tic" *ngFor="let tic of booking.chairsBooked let i = index">
           <div class="barcode" id="barcode_{{i}}" #barcodeContainer>
             <div class="cards">
               <h6>ROW {{tic.row}}</h6>
@@ -138,16 +141,16 @@
         <i class="bi bi-arrow-left-short"></i>
       </button>
     </div>
-
   </div>
   <div class="sci">
-
     <ul class="">
-
-      <li><a target="_blank" href="https://www.al3tar.me/ZPORTOFOLIO/#/home"><i class="bi bi-browser-chrome"></i></a></li>
-      <li><a target="_blank" href="https://www.facebook.com/profile.php?id=100009837481669"><i class="bi bi-facebook"></i></a></li>
+      <li><a target="_blank" href="https://www.al3tar.me/ZPORTOFOLIO/#/home"><i class="bi bi-browser-chrome"></i></a>
+      </li>
+      <li><a target="_blank" href="https://www.facebook.com/profile.php?id=100009837481669"><i
+            class="bi bi-facebook"></i></a></li>
       <li><a target="_blank" href="https://wa.me/01270363116"><i class="bi bi-whatsapp"></i></a></li>
-      <li><a target="_blank" href="https://www.linkedin.com/in/ziad-alattar-b6a481224/"><i class="bi bi-linkedin"></i></a></li>
+      <li><a target="_blank" href="https://www.linkedin.com/in/ziad-alattar-b6a481224/"><i
+            class="bi bi-linkedin"></i></a></li>
     </ul>
     <p>CODED BY <span>ZIAD ALMORSY</span></p>
   </div>

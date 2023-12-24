@@ -776,7 +776,9 @@ z-index: 1;
       margin: auto;
       overflow-x: scroll;
 
-      @media (min-width: 0px) and (max-width: 600px) {}
+      @media (min-width: 1425px) {
+        overflow-x: hidden !important;
+      }
 
 
 

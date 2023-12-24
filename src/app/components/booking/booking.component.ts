@@ -67,8 +67,9 @@ export class BookingComponent {
       time: '05:30',
     },
   ];
-  selected: any = [];
   dateArray: any = [];
+  selected: any = [];
+  selectedChairId: any = [];
   movieData: any;
   index: any;
   selectedDay: any;
@@ -202,23 +203,35 @@ export class BookingComponent {
   }
   select(i: any, x: any, li: any) {
     if (this.booking.type != '') {
-      let numberChair = `${this.chairs[i].name}${this.chairs[i].chairs[x]}`;
+      let numberChair = this.chairs[i].name+'-'+(this.chairs[i].chairs[x])
+      let afterSplit = numberChair.split('-')
 
       if (li.target.classList.contains('blocked')) {
-      } else if (li.target.classList.contains('selected')) {
-        li.target.classList.remove('selected');
-        let remove = this.selected.filter((item: any) => item != numberChair);
-        this.selected = remove;
+      } else if (this.selectedChairId.includes(numberChair)) {
+console.log('g');
+
+        let remove = this.selectedChairId.filter((item: any) => item != numberChair);
+        let remove1 = this.selected.filter((item: any) => item.row !=this.chairs[i].name && item.seat !=this.chairs[i].chairs[x]);
+
+
+        this.selectedChairId = remove;
+        this.selected = remove1;
+
       } else if (!li.target.classList.contains('booked')) {
-        li.target.classList.add('selected');
-        let remove = this.selected.filter((item: any) => item == numberChair);
+        let remove = this.selectedChairId.filter((item: any) => {item == numberChair});
         if (remove.length == 0) {
+
+          this.selectedChairId.push(
+             this.chairs[i].name+'-'+(this.chairs[i].chairs[x]),
+          );
           this.selected.push({
-            row: this.chairs[i].name,
-            seat: this.chairs[i].chairs[x],
+            row: afterSplit[0],
+            seat: afterSplit[1],
           });
         }
       }
+      console.log(this.selected);
+
       this.booking.chairsBooked = this.selected;
     }
   }
@@ -262,9 +275,9 @@ export class BookingComponent {
       let doneBtn: HTMLElement | any = document.getElementById('doneBtn');
       chair.style.display = 'none';
       bookBtn.style.display = 'none';
-      ticket.style.display = 'unset';
-      doneBtn.style.display = 'unset';
-      backBtn.style.display = 'unset';
+      ticket.style.display = 'block';
+      doneBtn.style.display = 'block';
+      backBtn.style.display = 'block';
     }
   }
 
@@ -274,11 +287,13 @@ export class BookingComponent {
     let backBtn: HTMLElement | any = document.getElementById('back-ticket');
     let bookBtn: HTMLElement | any = document.getElementById('book-ticket');
     let doneBtn: HTMLElement | any = document.getElementById('doneBtn');
-    chair.style.display = 'unset';
-    bookBtn.style.display = 'unset';
+    // let tic: HTMLElement | any = document.getElementById('tic');
+    chair.style.display = 'block';
+    bookBtn.style.display = 'block';
     ticket.style.display = 'none';
     doneBtn.style.display = 'none';
     backBtn.style.display = 'none';
+    // tic.style.display = 'none';
   }
   done() {
     let done: HTMLElement | any = document.getElementById('done');
@@ -292,4 +307,5 @@ export class BookingComponent {
       this.Router.navigate(['home']);
     }, 1300);
   }
+
 }
