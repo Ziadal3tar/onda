@@ -1,14 +1,15 @@
-// @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&display=swap');
-// @import "~bootstrap-icons/font/bootstrap-icons.css";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+  @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Kufi+Arabic&family=Reem+Kufi+Ink&family=Rubik+Doodle+Shadow&family=Satisfy&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+
 }
 :root{
   --primary: #ff3700
-  --sec: #ff3710
 }
 html {
   scroll-behavior: smooth;
@@ -19,7 +20,7 @@ body {
   background-color: #1f2025;
   color: white;
   margin: 0;
-  font-family: 'Montserrat Alternates', sans-serif !important;
+  font-family: 'Montserrat Alternates', sans-serif ;
 }
 
 header#header{
@@ -83,7 +84,7 @@ header#header{
       bottom: 0px;
     }
 
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     right: 30px;
     display: flex;
@@ -140,3 +141,14 @@ justify-content: space-between;
 
   background-image: url(./assets/client-dark-vip-cinema-studio.jpg);}
 
+  .logo2#logo2{
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    background-image: url(./assets/logo2.png);
+    background-repeat: no-repeat;
+  }
+.vh-75{
+  height: 60vh;
+}
