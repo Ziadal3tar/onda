@@ -203,36 +203,37 @@ export class BookingComponent {
   }
   select(i: any, x: any, li: any) {
     if (this.booking.type != '') {
-      let numberChair = this.chairs[i].name+'-'+(this.chairs[i].chairs[x])
-      let afterSplit = numberChair.split('-')
+      let numberChair = this.chairs[i].name + '-' + this.chairs[i].chairs[x];
+      let afterSplit = numberChair.split('-');
 
       if (li.target.classList.contains('blocked')) {
       } else if (this.selectedChairId.includes(numberChair)) {
-console.log('g');
-
-        let remove = this.selectedChairId.filter((item: any) => item != numberChair);
-        let remove1 = this.selected.filter((item: any) => item.row !=this.chairs[i].name && item.seat !=this.chairs[i].chairs[x]);
-
+        let remove = this.selectedChairId.filter(
+          (item: any) => item != numberChair
+        );
 
         this.selectedChairId = remove;
-        this.selected = remove1;
-
       } else if (!li.target.classList.contains('booked')) {
-        let remove = this.selectedChairId.filter((item: any) => {item == numberChair});
+        let remove = this.selectedChairId.filter((item: any) => {
+          item == numberChair;
+        });
         if (remove.length == 0) {
-
           this.selectedChairId.push(
-             this.chairs[i].name+'-'+(this.chairs[i].chairs[x]),
+            this.chairs[i].name + '-' + this.chairs[i].chairs[x]
           );
-          this.selected.push({
-            row: afterSplit[0],
-            seat: afterSplit[1],
-          });
         }
       }
-      console.log(this.selected);
+      let array = [];
+      for (let i = 0; i < this.selectedChairId.length; i++) {
+        const element = this.selectedChairId[i].split('-');
 
-      this.booking.chairsBooked = this.selected;
+        array.push({
+          row: element[0],
+          seat: element[1],
+        });
+      }
+
+      this.booking.chairsBooked = array;
     }
   }
   getTime(data: any, i: any) {
@@ -307,5 +308,4 @@ console.log('g');
       this.Router.navigate(['home']);
     }, 1300);
   }
-
 }
