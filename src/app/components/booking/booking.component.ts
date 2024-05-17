@@ -1,8 +1,17 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import * as JsBarcode from 'jsbarcode';
 import { ChangebgService } from 'src/app/services/changebg.service';
-
+interface CustomDataset {
+  ref?: string;
+  // Add other dataset properties here if needed
+}
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -13,58 +22,61 @@ export class BookingComponent {
 
   chairs: any = [
     {
+      name: 'VIP',
+      chairs: [1, 2, 3, 4, 5],
+      price: '2500',
+      booked: [],
+    },
+    {
       name: 'A',
-      chairs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      chairs: [1, 2, 3, 4, 5, 6],
+      price: '2300',
       booked: [],
     },
     {
       name: 'B',
-      chairs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      chairs: [1, 2, 3, 4, 5, 6],
+      price: '2200',
       booked: [],
     },
     {
       name: 'C',
-      chairs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      chairs: [1, 2, 3, 4, 5, 6, 7],
+      price: '2100',
       booked: [],
     },
     {
       name: 'D',
-      chairs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      chairs: [1, 2, 3, 4, 5, 6, 7],
+      price: '2000',
       booked: [],
     },
   ];
+
   times: any[] = [
     {
       type: '2D',
-      time: '10:00',
+      time: '12:00',
     },
     {
       type: '2D',
-      time: '12:30',
+      time: '16:00',
     },
     {
       type: '2D',
-      time: '15:00',
-    },
-    {
-      type: '3D',
-      time: '17:30',
-    },
-    {
-      type: '3D',
       time: '20:00',
     },
     {
       type: '3D',
-      time: '00:30',
+      time: '00:00',
     },
     {
-      type: '4DX',
-      time: '03:00',
+      type: '3D',
+      time: '4:00',
     },
     {
-      type: '4DX',
-      time: '05:30',
+      type: '3D',
+      time: '8:00',
     },
   ];
   dateArray: any = [];
@@ -81,7 +93,49 @@ export class BookingComponent {
     date: '',
     type: '',
   };
-  constructor(private _Images: ChangebgService, private Router: Router) {
+
+  months: { name: string; value: number }[] = [
+    { name: 'January', value: 1 },
+    { name: 'February', value: 2 },
+    { name: 'March', value: 3 },
+    { name: 'April', value: 4 },
+    { name: 'May', value: 5 },
+    { name: 'June', value: 6 },
+    { name: 'July', value: 7 },
+    { name: 'August', value: 8 },
+    { name: 'September', value: 9 },
+    { name: 'October', value: 10 },
+    { name: 'November', value: 11 },
+    { name: 'December', value: 12 },
+  ];
+  selectedMonth: any;
+
+  currentCardBackground: number;
+  Name: any = '';
+  Number: any = '';
+  Month: any = '';
+  Year: any = '';
+  Cvv: any = '';
+  minCardYear: any = new Date().getFullYear();
+  amexCardMask: any = '#### ###### #####';
+  otherCardMask: any = '#### #### #### ####';
+  cardNumberTemp: any;
+  isCardFlipped: boolean = false;
+  focusElementStyle: any;
+  isInputFocused: boolean = false;
+  Payment: boolean = false;
+  messageDone: boolean = false;
+
+  // months: number[] = Array.from({ length: 12 }, (_, i) => i + 1);
+  // minCardMonth: number = 3; // Change this to your desired minimum month
+  // selectedMonth: number; // Variable to hold the selected month
+
+  constructor(
+    private _Images: ChangebgService,
+    private Router: Router,
+    private elRef: ElementRef,
+    private renderer: Renderer2
+  ) {
     this.index = this.Router.url.split('/')[2].replace(/:/g, '');
     this._Images.currentImages.subscribe((data: any) => {
       // this.images = data;
@@ -92,19 +146,30 @@ export class BookingComponent {
         `url(${data[this.index].bg})`
       );
     });
+
+    this.currentCardBackground = Math.floor(Math.random() * 25 + 1);
   }
 
   generateBarcodes() {
     for (let i = 0; i < this.booking.chairsBooked.length; i++) {
       let code =
         this.movieData.name +
+        '_' +
         this.booking.date.date +
+        '_' +
         this.booking.type.time +
+        '_' +
         this.booking.chairsBooked[i].row +
-        this.booking.chairsBooked[i].seat;
+        '_' +
+        this.booking.chairsBooked[i].seat +
+        '_' +
+        this.booking.chairsBooked[i].price +
+        'EGP';
       const canvas = document.createElement('canvas');
       canvas.style.width = 100 + '%';
       JsBarcode(canvas, code, { format: 'CODE128' });
+      console.log(code);
+
       let div: any = document.getElementById(`barcode_${i}`);
       div.appendChild(canvas);
     }
@@ -124,6 +189,12 @@ export class BookingComponent {
         }
       }
     );
+
+    this.cardNumberTemp = this.otherCardMask;
+    const element = document.getElementById('cardNumber');
+    if (element) {
+      element.focus();
+    }
   }
   handelDays(i: any) {
     this.dateActive = i;
@@ -227,14 +298,38 @@ export class BookingComponent {
       for (let i = 0; i < this.selectedChairId.length; i++) {
         const element = this.selectedChairId[i].split('-');
 
+        console.log(this.chairs[i].price - 500);
+
+        let price;
+        if (this.isNotBetweenMidnightAndFourPM(this.booking.type.time)) {
+          price = this.chairs[i].price - 500;
+        } else {
+          price = this.chairs[i].price;
+        }
+        if (element[0] == 'VIP') {
+        } else if (element[0] == 'A') {
+        } else if (element[0] == 'B') {
+        } else if (element[0] == 'C') {
+        } else if (element[0] == 'D') {
+        }
         array.push({
           row: element[0],
           seat: element[1],
+          price,
         });
       }
 
       this.booking.chairsBooked = array;
     }
+  }
+
+  isNotBetweenMidnightAndFourPM(timeString: any) {
+    const [hours, minutes] = timeString.split(':').map(Number);
+    const totalSeconds = hours * 3600 + minutes * 60;
+
+    const limitSeconds = 16 * 3600;
+
+    return totalSeconds > 0 && totalSeconds < limitSeconds;
   }
   getTime(data: any, i: any) {
     this.timeActive = i;
@@ -297,15 +392,109 @@ export class BookingComponent {
     // tic.style.display = 'none';
   }
   done() {
-    let done: HTMLElement | any = document.getElementById('done');
-    done.style.opacity = '1';
-    done.style.display = 'none';
+    // let done: HTMLElement | any = document.getElementById('done');
+    // done.style.opacity = '1';
+    // done.style.display = 'none';
 
+    // setTimeout(() => {
+    //   done.style.opacity = '0';
+    // }, 1250);
+    // setTimeout(() => {
+
+    // }, 1300);
+    this.Payment = true;
+  }
+
+  get getCardType(): string {
+    let number = this.Number;
+    let re = new RegExp('^4');
+    if (number.match(re) !== null) return 'visa';
+
+    re = new RegExp('^(34|37)');
+    if (number.match(re) !== null) return 'amex';
+
+    re = new RegExp('^5[1-5]');
+    if (number.match(re) !== null) return 'mastercard';
+
+    re = new RegExp('^6011');
+    if (number.match(re) !== null) return 'discover';
+
+    re = new RegExp('^9792');
+    if (number.match(re) !== null) return 'troy';
+
+    return 'visa'; // default type
+  }
+
+  generateCardNumberMask(): string {
+    return this.getCardType === 'amex' ? this.amexCardMask : this.otherCardMask;
+  }
+
+  minCardMonth(): number {
+    return this.Year === this.minCardYear.toString()
+      ? new Date().getMonth() + 1
+      : 1;
+  }
+
+  flipCard(status: boolean): void {
+    this.isCardFlipped = status;
+  }
+
+  focus(hash: any) {
+    document.getElementById(`cardNumber`)?.classList.remove('borderFocus');
+    document.getElementById(`cardName`)?.classList.remove('borderFocus');
+    document.getElementById(`cardDate`)?.classList.remove('borderFocus');
+    document.getElementById(`${hash}`)?.classList.add('borderFocus');
+  }
+
+  blurInput(): void {
     setTimeout(() => {
-      done.style.opacity = '0';
-    }, 1250);
+      if (!this.isInputFocused) {
+        this.focusElementStyle = null;
+      }
+    }, 300);
+    this.isInputFocused = false;
+  }
+  handelNumber() {
+    let num = 16 - this.Number.length;
+    let hash = '';
+    for (let i = 0; i < num; i++) {
+      hash = hash + '#';
+    }
+    let number = this.Number + hash;
+
+    // Insert spaces every 4 characters
+    let formattedNumber = '';
+    for (let i = 0; i < number.length; i += 4) {
+      formattedNumber += number.slice(i, i + 4) + ' ';
+    }
+    formattedNumber = formattedNumber.trim(); // Remove extra space at the end
+
+    this.cardNumberTemp = formattedNumber;
+  }
+  submit() {
+    this.messageDone = !this.messageDone;
     setTimeout(() => {
-      this.Router.navigate(['home']);
-    }, 1300);
+      const messageElement: any = document.getElementById('messageDone');
+
+      if (messageElement) {
+        messageElement.classList.remove('opacity-0');
+        messageElement.classList.add('opacity-100');
+      }
+      setTimeout(() => {
+        messageElement.classList.add('opacity-0');
+        messageElement.classList.remove('opacity-100');
+        setTimeout(() => {
+          this.Router.navigate(['/home']);
+        }, 500);
+      }, 1900);
+    }, 10);
+
+    // setTimeout(() => {
+    //   document.getElementById('messageDone')?.classList.replace('opacity-100','opacity-0')
+    // setTimeout(() => {
+    //   this.Router.navigate(['/home'])
+
+    // }, 600);
+    // }, 2000);
   }
 }

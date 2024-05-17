@@ -7,6 +7,9 @@ import { HomeComponent } from './components/home/home.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,9 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-HammerModule
+HammerModule,
+FormsModule,
+ReactiveFormsModule
 
   ],
   providers: [],

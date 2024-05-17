@@ -74,16 +74,36 @@
         Screen
       </div>
       <!-- chairs -->
-      <div class="chair" id="chair">
+
+
+      <!-- <div class="chair" id="chair">
         <div class="rows my-4" *ngFor="let item of chairs let i = index">
           <p class="m-0">{{item.name}}</p>
           <li class="seat" *ngFor="let chair of item.chairs let x = index" [ngClass]="{'selected': selectedChairId.includes(item.name + '-' + (x+1))}"
             [ngClass]="{'booked': item.booked.includes(x)}" (click)="select(i,x,$event)">{{item.name}}{{chair}}</li>
           <p class="m-0" id="nameRow">{{item.name}}</p>
         </div>
+      </div> -->
 
 
+      <div class="chair" id="chair">
+        <div class="rows my-4" *ngFor="let item of chairs let i = index">
+          <p class="m-0">{{item.name}}</p>
+
+          <div class="d-flex" [ngClass]="item.name">
+
+            <li *ngFor="let chair of item.chairs let x = index" class="seat "
+              [ngClass]="{'selected': selectedChairId.includes(item.name + '-' + (x+1))}"
+              [ngClass]="{'booked': item.booked.includes(x)}" (click)="select(i,x,$event)">{{item.name}}{{chair}}</li>
+          </div>
+          <p class="m-0" id="nameRow">{{item.name}}</p>
+
+        </div>
       </div>
+
+
+
+
       <!-- ticket -->
       <div class="ticket" id="ticket">
         <div class="tic" id="tic" *ngFor="let tic of booking.chairsBooked let i = index">
@@ -155,3 +175,149 @@
     <p>CODED BY <span>ZIAD ALMORSY</span></p>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+<div class="w-100 vh-100 position-absolute top-0 start-0 z-1 bg-opacity-75 bg-black position-relative" *ngIf="Payment">
+
+  <div class="wrapper" id="app" (focusout)="blurInput()">
+    <div class="card-form">
+      <div class="card-list">
+        <div class="card-item" [class.-active]="isCardFlipped">
+          <div class="card-item__side -front">
+            <div class="card-item__focus" [class.-active]="focusElementStyle" [style]="focusElementStyle" #focusElement>
+            </div>
+            <div class="card-item__cover">
+              <img
+                [src]="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'"
+                class="card-item__bg">
+            </div>
+
+            <div class="card-item__wrapper">
+              <div class="card-item__top">
+                <img
+                  src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png"
+                  class="card-item__chip">
+                <div class="card-item__type">
+                  <img *ngIf="getCardType"
+                    [src]="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'"
+                    alt="" class="card-item__typeImg">
+                </div>
+              </div>
+              <label for="cardNumber" class="card-item__number borderNFocus" id="cardNumber">
+                {{cardNumberTemp}} <p *ngIf="!cardNumberTemp">#### #### #### ####</p>
+              </label>
+              <div class="card-item__content">
+                <label for="cardName" class="card-item__info borderNFocus" id="cardName">
+                  Card Holder <br> {{Name}}<p *ngIf="!Name">Full Name</p>
+                </label>
+                <div class="card-item__date borderNFocus" id="cardDate">
+                  <!-- Add your card expiration date formatting here -->
+                  Expires <br>
+                  <p *ngIf="Year || Month"> {{Year}}/{{Month}}</p>
+                  <p *ngIf="!Year && !Month">MM/YY</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item__side -back">
+            <div class="card-item__cover">
+              <img
+                [src]="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'"
+                class="card-item__bg">
+            </div>
+            <div class="card-item__band"></div>
+            <div class="card-item__cvv">
+              <div class="card-item__cvvTitle">CVV</div>
+              <div class="card-item__cvvBand">
+                {{Cvv}}
+              </div>
+              <div class="card-item__type">
+                <img *ngIf="getCardType"
+                  [src]="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'"
+                  class="card-item__typeImg">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="card-form__inner position-relative">
+        <i class=" bi bi-x-lg position-absolute top-0 start-0 m-2 text-black pointer-event"
+          (click)="Payment = false"></i>
+        <div class="card-input">
+          <label for="cardNumber" class="card-input__label">Card Number</label>
+          <input type="text" (keyup)="handelNumber()" class="card-input__input" (focus)="focus('cardNumber')"
+            maxlength="16" [(ngModel)]="Number" data-ref="cardNumber" autocomplete="off">
+        </div>
+        <div class="card-input">
+          <label for="cardName" class="card-input__label">Card Holder</label>
+          <input type="text" class="card-input__input" (focus)="focus('cardName')" [(ngModel)]="Name"
+            data-ref="cardName" autocomplete="off">
+        </div>
+
+
+
+
+        <div class="card-form__row">
+          <div class="card-form__col d-flex">
+            <div class="w-50">
+              <label for="cardYear" class="card-input__label">Year</label>
+              <input type="number" maxlength="2" class="card-input__input" (focus)="focus('cardDate')" id="cardYear"
+                maxlength="3" [(ngModel)]="Year" (blur)="flipCard(false)" autocomplete="off">
+            </div>
+            <div class="w-50">
+              <label for="cardMonth" class="card-input__label">Month</label>
+              <input type="number" maxlength="2" class="card-input__input" (focus)="focus('cardDate')" id="cardMonth"
+                maxlength="3" [(ngModel)]="Month" (blur)="flipCard(false)" autocomplete="off">
+            </div>
+          </div>
+
+
+
+
+          <div class="card-form__col -cvv">
+            <div class="card-input">
+              <label for="cardCvv" class="card-input__label">CVV</label>
+              <input type="text" class="card-input__input" id="cardCvv" maxlength="3" [(ngModel)]="Cvv"
+                (focus)="flipCard(true)" (blur)="flipCard(false)" autocomplete="off">
+            </div>
+          </div>
+        </div>
+
+        <button class="card-form__button" (click)="submit()">
+          Submit
+        </button>
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+  <div class="messageDone d-flex align-items-center justify-content-center opacity-0" id="messageDone" *ngIf="messageDone">
+    <p>The booking was successful</p>
+    <i class="bi bi-check2-circle fs-3"></i>
+  </div></div>

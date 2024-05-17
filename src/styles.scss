@@ -137,6 +137,25 @@ justify-content: space-between;
   color: skyblue;
 
 }
+.bi-x-lg{
+  cursor: pointer;
+}
+.messageDone{
+  background-color: #6db400;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  font-weight: 900;
+  transition: 0.5s;
+  p{
+    margin: 0;
+    padding: 0;
+  }
+}
 .bg#bg {
 
   background-image: url(./assets/client-dark-vip-cinema-studio.jpg);}
@@ -151,4 +170,27 @@ justify-content: space-between;
   }
 .vh-75{
   height: 60vh;
+}
+.scrollStyle {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scrollStyle::-webkit-scrollbar {
+  width: 2px;
+  height: 0px;
+}
+
+.scrollStyle::-webkit-scrollbar-track {
+  background-color: #001a31;
+  border-radius: 10px;
+  height: 80% !important;
+  width: 0px;
+}
+
+.scrollStyle::-webkit-scrollbar-thumb {
+  background-color: #bec7d0;
+  border-radius: 20px;
+  transition: 1s !important;
+  margin-right: 20px !important;
 }

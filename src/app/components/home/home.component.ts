@@ -9,18 +9,27 @@ declare var M: any; // Declare MaterializeCSS variable
 })
 export class HomeComponent {
   ngOnInit(): void {
+    this.booked = localStorage.getItem('tickets')
+    if (this.booked) {
+      this.booked = JSON.parse(this.booked);
+
+    }
     this._Images.updateFriendsChats()
 this._Images.updateIndex(2)
   }
   images: any[] = [];
+  booked: any;
   index: any;
+  openCart: Boolean =false;
   constructor(private _Images: ChangebgService) {
     this._Images.currentIndex.subscribe((data: any) => {
       this.index = data;
+
       this.changeBg(data);
     });
     this._Images.currentImages.subscribe((data: any) => {
       this.images = data;
+
     });
   }
   changeBg(i: any) {
@@ -74,5 +83,23 @@ if (video.paused) {
     btn.classList.remove('bi-pause');
     btn1.classList.add('bi-play');
     btn1.classList.remove('bi-pause');
+  }
+  deleteTicket(i:any){
+    let ticketsString = localStorage.getItem('tickets');
+    if (ticketsString) {
+      let tickets = JSON.parse(ticketsString);
+
+      if (Array.isArray(tickets) && tickets.length > i) {
+        tickets.splice(i, 1); // Remove 1 item starting from index 5
+
+        // Save the updated array back to localStorage
+        localStorage.setItem('tickets', JSON.stringify(tickets));
+        this.booked = localStorage.getItem('tickets')
+        if (this.booked) {
+          this.booked = JSON.parse(this.booked);
+
+        }
+      }
+    }
   }
 }
