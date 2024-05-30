@@ -185,7 +185,7 @@
 
 
 
-<div class="w-100 vh-100 position-absolute top-0 start-0 z-1 bg-opacity-75 bg-black position-relative" *ngIf="Payment">
+<div class="w-100 vh-100 position-absolute top-0 start-0 z-1 bg-opacity-75 bg-black position-fixed" *ngIf="Payment">
 
   <div class="wrapper" id="app" (focusout)="blurInput()">
     <div class="card-form">
@@ -317,7 +317,7 @@
     </div>
 
   </div>
-  <div class="messageDone d-flex align-items-center justify-content-center opacity-0" id="messageDone" *ngIf="messageDone">
+  <div class="messageDone d-flex align-items-center justify-content-center opacity-0" id="messageDone">
     <p>The booking was successful</p>
     <i class="bi bi-check2-circle fs-3"></i>
   </div></div>
