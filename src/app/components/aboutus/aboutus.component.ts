@@ -9,7 +9,7 @@ export class AboutusComponent {
   team: any[] = [
     {
       name: 'ziad almorsy',
-      image: '/assets/team/z2.jpg',
+      image: './assets/team/z2.jpg',
       gender: 'male',
     },
     {
